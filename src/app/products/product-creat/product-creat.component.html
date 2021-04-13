@@ -1,0 +1,43 @@
+
+<mat-card *ngIf="!isloading">
+
+  <form  [formGroup]="form" (submit) = "onaSavproduct()">
+    <mat-form-field>
+      <input
+      type="text"
+      matInput
+      formControlName="ProductName"
+      placeholder="Product Name"
+      >
+      <mat-error *ngIf="form.get('ProductName').invalid">pleas Enter valid ProductName  with at lest 3 caracter</mat-error>
+    </mat-form-field>
+    <div>
+      <button type="button" mat-button (click)="pickImg.click()">Pick Image</button>
+      <input type="file" #pickImg (change)="onImgePick($event)">
+    </div>
+    <div class="imagePreview" *ngIf="imgPreview !== '' && imgPreview && form.get('image').valid">
+      <img [src]="imgPreview" [alt]="form.value.ProductName">
+    </div>
+    <mat-form-field class="example-full-width">
+      <textarea
+      matInput rows="6"
+      [value]="" #productInput
+      formControlName="productDiscription"
+      placeholder="Product discription"
+      ></textarea>
+    <mat-error *ngIf="form.get('productDiscription').invalid">pleas Enter valid productDiscription  with at lest 10 caracter</mat-error>
+
+
+
+    </mat-form-field>
+  <button
+    type="submit"
+    mat-raised-button
+    color="warn"
+    (click)="onaSavproduct(productInput)"
+    >save Product</button>
+  </form>
+
+</mat-card>
+
+<mat-spinner  *ngIf="isloading"></mat-spinner>

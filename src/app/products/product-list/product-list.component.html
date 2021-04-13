@@ -1,0 +1,33 @@
+
+
+<mat-accordion *ngIf=" !isloading &&products.length >0  ">
+  <mat-expansion-panel *ngFor="let product of products">
+    <mat-expansion-panel-header>
+      {{product.ProductName}}
+    </mat-expansion-panel-header>
+    <div class="productImage">
+      <img [src]="product.imagePath" [alt]="product.ProductName">
+
+      <img src="../../../../backend/puplic/images/gggggggggggggggg-1618268081592.jpg" alt="">
+      {{product.imagePath}}
+    </div>
+    <p> {{product.productDiscription}}</p>
+    <mat-action-row>
+      <a [routerLink]="['/editproduct',product._id]" mat-button color="primary">EDIT</a>
+      <button mat-button color="accent" (click)="deleteproduct(product._id)"> DELETE</button>
+
+    </mat-action-row>
+  </mat-expansion-panel>
+  <p class="info-text body-1" *ngIf="products.length <=0 ">no products add yet !!</p>
+
+</mat-accordion>
+<mat-spinner *ngIf="isloading"></mat-spinner>
+<mat-paginator
+    [length]="totalproduct"
+    [pageSize]="productParPage"
+    [pageSizeOptions]="pageSizeOption"
+    (page)='onChangePage($event)'
+    *ngIf="products.length >0  "
+    ></mat-paginator>
+
+
