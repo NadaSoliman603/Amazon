@@ -17,8 +17,8 @@ export class ProductService {
   private product:IProduct[] =[]
 
   private productupdated = new Subject
-  _url = "http://localhost:9097/api/post/";
-  _urlUpdate = "http://localhost:9097/api/post/"
+  _url = "http://localhost:9097/product/post/";
+  _urlUpdate = "http://localhost:9097/product/post/"
 
 
   allproduct(data){

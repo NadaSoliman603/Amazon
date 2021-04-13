@@ -21,5 +21,5 @@ app.use("puplic/img", express.static(path.join("/puplic/img")))
 
 
 
-app.use("/api/post", productRoutes)
+app.use("/api/product", productRoutes)
 module.exports = app;
