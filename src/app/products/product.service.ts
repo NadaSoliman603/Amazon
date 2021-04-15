@@ -14,15 +14,15 @@ import { Router } from '@angular/router';
 export class ProductService {
 
   constructor(private _http:HttpClient, private router: Router) { }
-  private product:IProduct[] =[]
+  private products:IProduct[] =[]
 
   private productupdated = new Subject
-  _url = "http://localhost:9097/product/post/";
-  _urlUpdate = "http://localhost:9097/product/post/"
+  _url = "http://localhost:9097/api/product/";
+  _urlUpdate = "http://localhost:9097/api/product/"
 
 
   allproduct(data){
-    this.product = data
+    this.products = data
   }
 
   getproduct(productParPage:number, currentPage:number): Observable <{product:IProduct[], maxproduct:number}>{
@@ -32,29 +32,56 @@ export class ProductService {
 
   }
 
-  updateproduct(id:string, ProductName:string, productDiscription:string, image: File | string ){
+  // updateproduct(id:string, ProductName:string, productDiscription:string, image: File | string ){
+  //   let productData:IProduct | FormData
+  //   if(typeof(image === "object")){
+  //     productData = new FormData()
+  //     productData.append("_id",id)
+  //     productData.append("ProductName",ProductName)
+  //     productData.append("productDiscription",productDiscription)
+  //     productData.append("image", image, ProductName )
+  //   }else{
+  //     const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
+  //   }
+  //   this._http.put(this._urlUpdate+id, productData)
+  //   .subscribe(result=>{
+  //     const updateproduct = [...this.product];
+  //     const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
+  //     const oldproductIndex = updateproduct.findIndex(p=> p._id === id);
+  //     updateproduct[oldproductIndex] = product;
+  //     this.product = updateproduct
+  //     this.productupdated.next([...this.product])
+  //     this.router.navigate(["/"])
+  //   })
+
+  // }
+
+
+
+  updateproduct(id:string, ProductName:string, productDiscription:string, image: File | string){
     let productData:IProduct | FormData
     if(typeof(image === "object")){
       productData = new FormData()
       productData.append("_id",id)
       productData.append("ProductName",ProductName)
       productData.append("productDiscription",productDiscription)
-      productData.append("image", image, ProductName )
+      productData.append("image", "image", "ProductName" )
     }else{
       const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
     }
     this._http.put(this._urlUpdate+id, productData)
     .subscribe(result=>{
-      const updateproduct = [...this.product];
+      const updatedproduct = [...this.products];
       const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
-      const oldproductIndex = updateproduct.findIndex(p=> p._id === id);
-      updateproduct[oldproductIndex] = product;
-      this.product = updateproduct
-      this.productupdated.next([...this.product])
+      const oldPostIndex = updatedproduct.findIndex(p=> p._id === id);
+      updatedproduct[oldPostIndex] = product;
+      this.products = updatedproduct
+      this.productupdated.next([...this.products])
       this.router.navigate(["/"])
     })
 
   }
+  ///////////////////////////////////////////////////////////////////
 
   getproductToEdit(id:string){
     return this._http.get<IProduct>(this._url+id)

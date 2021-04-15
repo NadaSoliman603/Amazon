@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -24,32 +25,55 @@ export class ProductCreatComponent implements OnInit {
   private mode = "creat";
   private productId :string;
 
-  //@Output() productCreate = new EventEmitter<IProduct>();
+  // //@Output() productCreate = new EventEmitter<IProduct>();
 
-  onaSavproduct(){
-    //this.enterproductDiscription = productInput.value;
-    if(this.form.invalid){
-      console.log("invalid")
-      return;
-    }
-    if(this.form.valid){
-      // const product: IProduct  = {
-      //   ProductName: form.value.ProductName,
-      //   productDiscription: form.value.productDiscription
-      // }
+  // onaSavproduct(){
+  //   //this.enterproductDiscription = productInput.value;
+  //   if(this.form.invalid){
+  //     console.log("invalid")
+  //     return;
+  //   }
+  //   if(this.form.valid){
+  //     // const product: IProduct  = {
+  //     //   ProductName: form.value.ProductName,
+  //     //   productDiscription: form.value.productDiscription
+  //     // }
 
-      // this.productCreate.emit(product);
-      this.isloading = true
-      if(this.mode == "creat"){
-        this.productService.addproduct(this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
+  //     // this.productCreate.emit(product);
+  //     this.isloading = true
+  //     if(this.mode == "creat"){
+  //       this.productService.addproduct(this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
+  //     }
+  //     if(this.mode == "edit"){
+  //       console.log(this.productId)
+  //       this.productService.updateproduct(this.productId,this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
+  //     }
+
+  //     this.form.reset()
+  //   }
+  //   }
+
+
+
+    @Output() postCreate = new EventEmitter<IProduct>();
+
+    onaSavproduct(){
+      if(this.form.invalid){
+        return;
       }
-      if(this.mode == "edit"){
-        this.productService.updateproduct(this.productId,this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
-      }
+      if(this.form.valid){
+        this.isloading = true
+        if(this.mode == "creat"){
+          this.productService.addproduct(this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
+        }
+        if(this.mode == "edit"){
+          this.productService.updateproduct(this.productId,this.form.value.ProductName,this.form.value.productDiscription, this.form.value.image)
+        }
 
-      this.form.reset()
-    }
-    }
+        this.form.reset()
+      }
+      }
+    ///////////////////////////////////////////////////////////////////////////////////
 
     onImgePick(event: Event) {
       const file = (event.target as HTMLInputElement).files[0]

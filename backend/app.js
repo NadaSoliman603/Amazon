@@ -17,9 +17,11 @@ mongose.connect("mongodb+srv://nadaSoliman26012015:oHU7stnfRnQYTcXI@cluster0.sd4
 })
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use("puplic/img", express.static(path.join("/puplic/img")))
-
-
+//app.use("puplic/img", express.static(path.join("/puplic/img")))
+//app.use('/puplic/img"', express.static(__dirname + '/puplic/img/'));
+//app.use(express.static('puplic'))
+app.use('/puplic', express.static(path.join(__dirname, 'puplic')))
 
 app.use("/api/product", productRoutes)
+
 module.exports = app;
