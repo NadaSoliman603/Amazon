@@ -32,29 +32,7 @@ export class ProductService {
 
   }
 
-  // updateproduct(id:string, ProductName:string, productDiscription:string, image: File | string ){
-  //   let productData:IProduct | FormData
-  //   if(typeof(image === "object")){
-  //     productData = new FormData()
-  //     productData.append("_id",id)
-  //     productData.append("ProductName",ProductName)
-  //     productData.append("productDiscription",productDiscription)
-  //     productData.append("image", image, ProductName )
-  //   }else{
-  //     const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
-  //   }
-  //   this._http.put(this._urlUpdate+id, productData)
-  //   .subscribe(result=>{
-  //     const updateproduct = [...this.product];
-  //     const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
-  //     const oldproductIndex = updateproduct.findIndex(p=> p._id === id);
-  //     updateproduct[oldproductIndex] = product;
-  //     this.product = updateproduct
-  //     this.productupdated.next([...this.product])
-  //     this.router.navigate(["/"])
-  //   })
 
-  // }
 
 
 
@@ -65,7 +43,7 @@ export class ProductService {
       productData.append("_id",id)
       productData.append("ProductName",ProductName)
       productData.append("productDiscription",productDiscription)
-      productData.append("image", "image", "ProductName" )
+      productData.append("image", image, ProductName)
     }else{
       const product:IProduct = {_id: id, ProductName:ProductName, productDiscription:productDiscription, imagePath: image}
     }
