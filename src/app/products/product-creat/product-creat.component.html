@@ -2,6 +2,10 @@
 <mat-card *ngIf="!isloading">
 
   <form  [formGroup]="form" (submit) = "onaSavproduct()">
+    <div class="pickImg">
+      <button type="button" mat-button (click)="pickImg.click()">Pick Image</button>
+      <input type="file" #pickImg (change)="onImgePick($event)">
+    </div>
     <mat-form-field>
       <input
       type="text"
@@ -11,13 +15,76 @@
       >
       <mat-error *ngIf="form.get('ProductName').invalid">pleas Enter valid ProductName  with at lest 3 caracter</mat-error>
     </mat-form-field>
-    <div>
-      <button type="button" mat-button (click)="pickImg.click()">Pick Image</button>
-      <input type="file" #pickImg (change)="onImgePick($event)">
-    </div>
+
     <div class="imagePreview" *ngIf="imgPreview !== '' && imgPreview && form.get('image').valid">
       <img [src]="imgPreview" [alt]="form.value.ProductName">
     </div>
+
+
+
+    <mat-form-field class="numberInput">
+      <input
+      type="Text"
+      matInput
+      formControlName="productCategory"
+      placeholder="Category"
+      >
+      <mat-error *ngIf="form.get('productCategory').invalid">pleas Enter valid Category </mat-error>
+
+    </mat-form-field >
+
+    <mat-form-field class="numberInput">
+      <input
+    type="number"
+    matInput
+    formControlName="productQuntity"
+    placeholder="Product Quntity"
+    >
+    <mat-error *ngIf="form.get('productQuntity').invalid">pleas Enter valid Quntity </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="numberInput">
+      <input
+      type="number"
+      matInput
+      formControlName="productPrice"
+      placeholder="Product Price"
+      >
+      <mat-error *ngIf="form.get('productPrice').invalid">pleas Enter valid productPrice </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="numberInput">
+      <input
+    type="number"
+    matInput
+    formControlName="productRate"
+    placeholder="Product Rate"
+    >
+    <mat-error *ngIf="form.get('productRate').invalid">pleas Enter valid productRate </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="numberInput">
+      <input
+    type="number"
+    matInput
+    formControlName="productDiscount"
+    placeholder="Product Discount"
+    >
+    <mat-error *ngIf="form.get('productDiscount').invalid">pleas Enter valid productRate </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="numberInput">
+      <input
+      class="color"
+        type="color"
+        matInput
+        formControlName="productColor"
+        placeholder="Product Color"
+    >
+
+    <mat-error *ngIf="form.get('productColor').invalid">pleas Enter valid productColor </mat-error>
+    </mat-form-field>
+
     <mat-form-field class="example-full-width">
       <textarea
       matInput rows="6"
@@ -25,6 +92,7 @@
       formControlName="productDiscription"
       placeholder="Product discription"
       ></textarea>
+
     <mat-error *ngIf="form.get('productDiscription').invalid">pleas Enter valid productDiscription  with at lest 10 caracter</mat-error>
 
 

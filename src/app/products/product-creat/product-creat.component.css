@@ -24,3 +24,20 @@ input[type="file"]{
   height: 100%;
   width: 100%;
 }
+
+.pickImg
+{
+  float: right;
+}
+.pickImg button
+{
+  float: right;
+}
+.Productcolor{
+  width: 100px;
+  height: 50px;
+}
+.numberInput{
+  width: 10%;
+  margin: 3%;
+}

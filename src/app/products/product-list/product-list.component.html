@@ -3,13 +3,76 @@
 <mat-accordion *ngIf=" !isloading &&products.length >0  ">
   <mat-expansion-panel *ngFor="let product of products">
     <mat-expansion-panel-header>
-      {{product.ProductName}}
+      <h2>{{product.ProductName}}</h2>
     </mat-expansion-panel-header>
-    <div class="productImage">
-      <img [src]="product.imagePath" [alt]="product.ProductName">
 
+    <div class="container">
+      <div class="row">
+        <div class="productImage col-4" >
+          <img [src]="product.imagePath" [alt]="product.ProductName">
+        </div>
+
+        <div class="productdetails col-8" >
+
+            <div class="row">
+              <div class="col-4"><h2>Product Category :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Quntity :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Price :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Rate :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Discount :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Color :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4"><h2>Product Discription :</h2></div>
+              <div class="col-8">
+                <p> {{product.productDiscription}}</p>
+              </div>
+            </div>
+        </div>
+
+
+      </div>
     </div>
-    <p> {{product.productDiscription}}</p>
+
+
+
+
+
+
     <mat-action-row>
       <a [routerLink]="['/editproduct',product._id]" mat-button color="primary">EDIT</a>
       <button mat-button color="accent" (click)="deleteproduct(product._id)"> DELETE</button>

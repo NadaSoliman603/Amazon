@@ -98,7 +98,14 @@ export class ProductCreatComponent implements OnInit {
     this.form = new FormGroup({
       ProductName: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       productDiscription:  new FormControl(null, {validators: [Validators.required]}),
-      image: new FormControl(null, {validators:[Validators.required], asyncValidators:[mimeType]})
+      image: new FormControl(null, {validators:[Validators.required], asyncValidators:[mimeType]}),
+      productPrice: new FormControl(null,  {validators:[Validators.required]}),
+      productRate: new FormControl(null,  {validators:[Validators.required]}),
+      productDiscount: new FormControl(null,  {validators:[Validators.required]}),
+      productCategory: new FormControl(null,  {validators:[Validators.required]}),
+      productQuntity: new FormControl(null,  {validators:[Validators.required]}),
+      productColor: new FormControl(null,  {validators:[Validators.required]}),
+
     })
 
     //Edit product
